@@ -1,0 +1,108 @@
+---
+title: "Homework 3 Assignment"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+install.packages("tidyverse")
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+glass <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/glass.data")
+```
+
+```{r}
+mutate(glass, 'building_windows_float_processed' = 1, 'building_windows_non_float_processed' = 2, 'vehicle_windows_float_processed' = 3, 'vehicle_windows_non_float_processed' = 4, 'containers' = 5, 'tableware' = 6, 'headlamps' = 7)
+```
+
+```{r}
+filter(glass, "Fe"<0.2, "Glass" == "tableware", "headlamps")
+```
+
+```{r}
+yeast <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/yeast.data")
+```
+
+```{r}
+yeast$seq_name <- NULL
+```
+
+```{r}
+yeast$nuc <- NULL
+```
+
+```{r}
+install.packages("readxl")
+```
+
+```{r}
+library(readxl)
+```
+
+```{r}
+white_wine <- read_excel(path = "white-wine.xlsx")
+```
+
+```{r}
+white_wine_variables <- read_excel(path = "white-wine.xlsx", sheet = "variables")
+```
+
+```{r}
+colnames(white_wine_variables) <- c('fixed_acidity', 'volatile_acidity', 'citric_acid', 'residual_sugar', 'chlorides', 'free_sulfur_dioxide', 'total_sulfur_dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'quality')
+```
+
+```{r}
+white_wine_variables$white <- c('white')
+```
+
+```{r}
+install.packages("readr")
+```
+
+```{r}
+red-wine <- read_csv("red-wine.csv")
+```
+
+```{r}
+bind_rows(list(white_wine_variables, red-wine))
+```
+
+```{r}
+library(DBI)
+con <- dbConnect(data_base_type_goes_here_usually_requires_a_package, 
+  host = "hostname.website",
+  user = "username",
+  password = rstudioapi::askForPassword("DB password")
+)
+```
+
+```{r}
+tbl(src, ...)
+is.tbl(x)
+```
